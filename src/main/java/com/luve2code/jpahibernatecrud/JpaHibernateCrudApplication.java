@@ -19,13 +19,13 @@ public class JpaHibernateCrudApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
         return runner->{
 //            createStudent(studentDAO);
-//            creatMultiStudents(studentDAO);
+            creatMultiStudents(studentDAO);
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
 //            queryForStudentsByLastNAme(studentDAO);
 //            updateStudent(studentDAO);
 //            deleteStudent(studentDAO);
-              deleteAllStudents(studentDAO);
+//              deleteAllStudents(studentDAO);
         };
     }
 
