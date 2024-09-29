@@ -20,15 +20,13 @@ public class JpaHibernateCrudApplication {
         return runner->{
 //            createStudent(studentDAO);
 //            creatMultiStudents(studentDAO);
-
 //            readStudent(studentDAO);
-
 //            queryForStudents(studentDAO);
-            queryForStudentsByLastNAme(studentDAO);
+//            queryForStudentsByLastNAme(studentDAO);
+            updateStudent(studentDAO);
+
         };
     }
-
-
 
     private void createStudent(StudentDAO studentDAO) {
         //create student object
@@ -59,7 +57,6 @@ public class JpaHibernateCrudApplication {
     }
 
 
-
     private void readStudent(StudentDAO studentDAO) {
         //create student object
         System.out.println("Creating new student object...");
@@ -84,6 +81,8 @@ public class JpaHibernateCrudApplication {
             System.out.println(student);
         }
     }
+
+
     private void queryForStudentsByLastNAme(StudentDAO studentDAO) {
         // get list of students
         List<Student> students = studentDAO.findByLastName("Mohamed");
@@ -92,8 +91,15 @@ public class JpaHibernateCrudApplication {
         for (Student student : students){
             System.out.println(student);
         }
-
     }
 
 
+    private void updateStudent(StudentDAO studentDAO) {
+     int id=1;
+     Student student = studentDAO.findById(id);
+     student.setFirstName("Hon");
+     student.setEmail("HON@gmail.com");
+     studentDAO.update(student);
+     System.out.println("Student Updated to : "+student);
+    }
 }
