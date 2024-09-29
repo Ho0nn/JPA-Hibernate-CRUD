@@ -23,10 +23,14 @@ public class JpaHibernateCrudApplication {
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
 //            queryForStudentsByLastNAme(studentDAO);
-            updateStudent(studentDAO);
-
+//            updateStudent(studentDAO);
+//            deleteStudent(studentDAO);
+              deleteAllStudents(studentDAO);
         };
     }
+
+
+
 
     private void createStudent(StudentDAO studentDAO) {
         //create student object
@@ -101,5 +105,19 @@ public class JpaHibernateCrudApplication {
      student.setEmail("HON@gmail.com");
      studentDAO.update(student);
      System.out.println("Student Updated to : "+student);
+    }
+
+
+    private void deleteStudent(StudentDAO studentDAO) {
+        int id=4;
+        studentDAO.delete(id);
+        System.out.println("Student Delete Successfully!");
+    }
+
+    private void deleteAllStudents(StudentDAO studentDAO) {
+        System.out.println("Deleting All Students");
+        int numOfRowsDeleted=studentDAO.deleteAll();
+        System.out.println("Deleted Row count : "+numOfRowsDeleted);
+
     }
 }
