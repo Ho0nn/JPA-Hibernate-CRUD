@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class JpaHibernateCrudApplication {
 
@@ -17,7 +19,12 @@ public class JpaHibernateCrudApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
         return runner->{
 //            createStudent(studentDAO);
-            creatMultiStudents(studentDAO);
+//            creatMultiStudents(studentDAO);
+
+//            readStudent(studentDAO);
+
+//            queryForStudents(studentDAO);
+            queryForStudentsByLastNAme(studentDAO);
         };
     }
 
@@ -36,6 +43,7 @@ public class JpaHibernateCrudApplication {
         System.out.println("Student Saved with id "+temp.getId());
     }
 
+
     private void creatMultiStudents(StudentDAO studentDAO) {
         //create students object
         System.out.println("Creating new students object...");
@@ -49,5 +57,43 @@ public class JpaHibernateCrudApplication {
         studentDAO.save(temp1);
         studentDAO.save(temp2);
     }
+
+
+
+    private void readStudent(StudentDAO studentDAO) {
+        //create student object
+        System.out.println("Creating new student object...");
+        Student temp = new Student("Gana","Yazed","GanaYZ@gmail.com");
+        //save the student object
+        System.out.println("Save student");
+        studentDAO.save(temp);
+
+        //display id for saved student
+        int id = temp.getId();
+        System.out.println("Student is Saved with ID : "+id);
+        Student student=studentDAO.findById(id);
+
+        System.out.println("Found Student "+student);
+
+    }
+
+
+    private void queryForStudents(StudentDAO studentDAO) {
+        List<Student> students = studentDAO.findAll();
+        for (Student student:students){
+            System.out.println(student);
+        }
+    }
+    private void queryForStudentsByLastNAme(StudentDAO studentDAO) {
+        // get list of students
+        List<Student> students = studentDAO.findByLastName("Mohamed");
+
+        // display list of students
+        for (Student student : students){
+            System.out.println(student);
+        }
+
+    }
+
 
 }
